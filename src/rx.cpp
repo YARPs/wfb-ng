@@ -386,10 +386,10 @@ void Forwarder::process_packet(const uint8_t *buf, size_t size, uint8_t wlan_idx
                                const int8_t *rssi, const int8_t *noise, uint16_t freq, uint8_t mcs_index,
                                uint8_t bandwidth, sockaddr_in *sockaddr)
 {
-    wrxfwd_t fwd_hdr = { .wlan_idx = wlan_idx,
-                         .freq = htons(freq),
-                         .mcs_index = mcs_index,
-                         .bandwidth = bandwidth };
+    wrxfwd_t fwd_hdr; fwd_hdr.wlan_idx = wlan_idx;
+                         fwd_hdr.freq = htons(freq);
+                         fwd_hdr.mcs_index = mcs_index;
+                         fwd_hdr.bandwidth = bandwidth ;
 
     memcpy(fwd_hdr.antenna, antenna, RX_ANT_MAX * sizeof(uint8_t));
     memcpy(fwd_hdr.rssi, rssi, RX_ANT_MAX * sizeof(int8_t));
